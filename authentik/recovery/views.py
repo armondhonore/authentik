@@ -25,12 +25,14 @@ class UseTokenView(View):
                 .select_related("user")
             )
             token = tokens.first()
+
             if token is None:
                 raise Http404
+
             login(request, token.user, backend=BACKEND_INBUILT)
             token.delete()
-        # Recovery sessions run in "safe mode" so that misconfigured branding (e.g. custom
-        # CSS that hides login controls) cannot lock the recovered user back out.
+
         request.session[SESSION_KEY_BRAND_SAFE_MODE] = True
+
         messages.warning(request, _("Used recovery-link to authenticate."))
         return redirect("authentik_core:if-user")

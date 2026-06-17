@@ -18,8 +18,6 @@ from authentik.lib.models import SerializerModel
 LOGGER = get_logger()
 
 # Session flag marking a "safe mode" session (e.g. one created via a recovery link).
-# When set, brand customisations that could lock a user out - such as custom CSS - are
-# suppressed so the session can always reach the UI to fix the underlying configuration.
 SESSION_KEY_BRAND_SAFE_MODE = "authentik/brands/safe_mode"
 
 
