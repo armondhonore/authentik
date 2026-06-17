@@ -8,6 +8,7 @@ from django.shortcuts import redirect
 from django.utils.translation import gettext as _
 from django.views import View
 
+from authentik.brands.models import SESSION_KEY_BRAND_SAFE_MODE
 from authentik.core.models import Token, TokenIntents
 from authentik.stages.password import BACKEND_INBUILT
 
@@ -28,5 +29,8 @@ class UseTokenView(View):
                 raise Http404
             login(request, token.user, backend=BACKEND_INBUILT)
             token.delete()
+        # Recovery sessions run in "safe mode" so that misconfigured branding (e.g. custom
+        # CSS that hides login controls) cannot lock the recovered user back out.
+        request.session[SESSION_KEY_BRAND_SAFE_MODE] = True
         messages.warning(request, _("Used recovery-link to authenticate."))
         return redirect("authentik_core:if-user")

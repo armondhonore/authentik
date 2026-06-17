@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html
     lang="{{ LANGUAGE_CODE }}"
+    {% if safe_mode %}class="ak-m-safe-mode"{% endif %}
     data-theme="{% if ui_theme == "dark" %}dark{% else %}light{% endif %}"
     data-theme-choice="{% if ui_theme == "dark" %}dark{% elif ui_theme == "light" %}light{% else %}auto{% endif %}"
 >
@@ -40,5 +41,10 @@
         {% endblock %}
         {% block scripts %}
         {% endblock %}
+        {% if safe_mode %}
+        <div class="ak-c-safe-mode">
+            {% trans "Recovery session is active. Custom branding is disabled." %}
+        </div>
+        {% endif %}
     </body>
 </html>
