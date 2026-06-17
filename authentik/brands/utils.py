@@ -19,7 +19,7 @@ DEFAULT_BRAND = Brand(domain="fallback")
 
 def session_safe_mode(request: HttpRequest) -> bool:
     """Whether the current session is in brand "safe mode" (e.g. created via a recovery
-    link), in which case lock-out-prone customisations such as custom CSS are suppressed."""
+    link), in which case lock-out-prone customization such as custom CSS are suppressed."""
     session = getattr(request, "session", None)
     if session is None:
         return False
