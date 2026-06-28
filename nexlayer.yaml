@@ -3,6 +3,7 @@ application:
   pods:
   - name: server
     image: ghcr.io/goauthentik/server:latest
+    command: server
     path: /
     servicePorts:
     - 9000
