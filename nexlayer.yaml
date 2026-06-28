@@ -9,13 +9,27 @@ application:
     - 9000
     vars:
       AUTHENTIK_SECRET_KEY: "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2"
-      AUTHENTIK_REDIS__HOST: redis.pod
-      AUTHENTIK_POSTGRESQL__HOST: postgres.pod
+      AUTHENTIK_REDIS__HOST: authentik-redis.pod
+      AUTHENTIK_POSTGRESQL__HOST: authentik-postgres.pod
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__PASSWORD: "${POSTGRES_PASSWORD}"
       AUTHENTIK_POSTGRESQL__NAME: authentik
       AUTHENTIK_ERROR_REPORTING__ENABLED: "false"
       AUTHENTIK_LISTEN__HTTP: "0.0.0.0:9000"
+      AUTHENTIK_LOG_LEVEL: warning
+  - name: worker
+    image: ghcr.io/goauthentik/server:latest
+    command: worker
+    servicePorts:
+    - 9001
+    vars:
+      AUTHENTIK_SECRET_KEY: "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2"
+      AUTHENTIK_REDIS__HOST: authentik-redis.pod
+      AUTHENTIK_POSTGRESQL__HOST: authentik-postgres.pod
+      AUTHENTIK_POSTGRESQL__USER: authentik
+      AUTHENTIK_POSTGRESQL__PASSWORD: "${POSTGRES_PASSWORD}"
+      AUTHENTIK_POSTGRESQL__NAME: authentik
+      AUTHENTIK_ERROR_REPORTING__ENABLED: "false"
       AUTHENTIK_LOG_LEVEL: warning
   - name: postgres
     image: mirror.gcr.io/library/postgres:16-alpine
@@ -24,7 +38,7 @@ application:
     vars:
       POSTGRES_DB: authentik
       POSTGRES_USER: authentik
-      POSTGRES_PASSWORD: authentik
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
     volumes:
     - name: authentik-db
       mountPath: /var/lib/postgresql/data
