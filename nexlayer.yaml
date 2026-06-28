@@ -9,8 +9,8 @@ application:
     - 9000
     vars:
       AUTHENTIK_SECRET_KEY: "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2"
-      AUTHENTIK_REDIS__HOST: authentik-redis.pod
-      AUTHENTIK_POSTGRESQL__HOST: authentik-postgres.pod
+      AUTHENTIK_REDIS__HOST: redis.pod
+      AUTHENTIK_POSTGRESQL__HOST: postgres.pod
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__PASSWORD: "${POSTGRES_PASSWORD}"
       AUTHENTIK_POSTGRESQL__NAME: authentik
@@ -24,8 +24,8 @@ application:
     - 9001
     vars:
       AUTHENTIK_SECRET_KEY: "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2"
-      AUTHENTIK_REDIS__HOST: authentik-redis.pod
-      AUTHENTIK_POSTGRESQL__HOST: authentik-postgres.pod
+      AUTHENTIK_REDIS__HOST: redis.pod
+      AUTHENTIK_POSTGRESQL__HOST: postgres.pod
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__PASSWORD: "${POSTGRES_PASSWORD}"
       AUTHENTIK_POSTGRESQL__NAME: authentik
