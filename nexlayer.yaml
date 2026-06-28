@@ -17,13 +17,6 @@ application:
       AUTHENTIK_ERROR_REPORTING__ENABLED: "false"
       AUTHENTIK_LISTEN__HTTP: "0.0.0.0:9000"
       AUTHENTIK_LOG_LEVEL: warning
-    volumes:
-    - name: authentik-media
-      mountPath: /media
-      size: 5Gi
-    - name: authentik-templates
-      mountPath: /templates
-      size: 1Gi
   - name: postgres
     image: postgres:16-alpine
     servicePorts:
