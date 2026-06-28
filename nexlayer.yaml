@@ -18,7 +18,7 @@ application:
       AUTHENTIK_LISTEN__HTTP: "0.0.0.0:9000"
       AUTHENTIK_LOG_LEVEL: warning
   - name: postgres
-    image: postgres:16-alpine
+    image: mirror.gcr.io/library/postgres:16-alpine
     servicePorts:
     - 5432
     vars:
@@ -30,7 +30,7 @@ application:
       mountPath: /var/lib/postgresql/data
       size: 5Gi
   - name: redis
-    image: redis:7-alpine
+    image: mirror.gcr.io/library/redis:7-alpine
     servicePorts:
     - 6379
     volumes:
